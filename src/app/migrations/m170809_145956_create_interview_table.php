@@ -1,30 +1,31 @@
 <?php
 
-use yii\db\Migration;
+use batsg\migrations\BaseMigrationCreateTable;
 
 /**
  * Handles the creation of table `interview`.
  */
-class m170809_145956_create_interview_table extends Migration
+class m170809_145956_create_interview_table extends BaseMigrationCreateTable
 {
     /**
-     * @inheritdoc
+     * @var string
      */
-    public function up()
-    {
-        $this->createTable('interview', [
-            'id' => $this->primaryKey(),
-			'interviewee' => $this->string()->notNull(),
-			'inteview_date' => $this->date(),
-			'remarks' => $this->text(),
-        ]);
-    }
-
+    protected $table = 'interview';
+    
     /**
-     * @inheritdoc
+     * {@inheritDoc}
+     * @see \batsg\migrations\BaseMigrationCreateTable::createDbTable()
      */
-    public function down()
+    protected function createDbTable()
     {
-        $this->dropTable('interview');
+        $this->createTableWithExtraFields($this->table, [
+            'id' => $this->primaryKey(),
+            'interviewee' => [$this->string()->notNull(), '面接受ける者'],
+            'interviewer' => [$this->string()->notNull(), '面接官'],
+            'inteview_date' => [$this->date(), '面接日'],
+            'remarks' => [$this->text(), '備考'],
+        ]);
+        
+        $this->addComments($this->table, '面接');
     }
 }

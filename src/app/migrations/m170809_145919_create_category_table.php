@@ -1,28 +1,28 @@
 <?php
 
-use yii\db\Migration;
+use batsg\migrations\BaseMigrationCreateTable;
 
 /**
  * Handles the creation of table `category`.
  */
-class m170809_145919_create_category_table extends Migration
+class m170809_145919_create_category_table extends BaseMigrationCreateTable
 {
     /**
-     * @inheritdoc
+     * @var string
      */
-    public function up()
-    {
-        $this->createTable('category', [
-            'id' => $this->primaryKey(),
-			'name' => $this->string()->notNull(),
-        ]);
-    }
-
+    protected $table = 'category';
+    
     /**
-     * @inheritdoc
+     * {@inheritDoc}
+     * @see \batsg\migrations\BaseMigrationCreateTable::createDbTable()
      */
-    public function down()
+    protected function createDbTable()
     {
-        $this->dropTable('category');
+        $this->createTableWithExtraFields($this->table, [
+            'id' => $this->primaryKey(),
+            'name' => [$this->string()->notNull(), 'カテゴリー名'],
+        ]);
+        
+        $this->addComments($this->table, 'カテゴリー');
     }
 }

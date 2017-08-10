@@ -39,18 +39,18 @@ class InitDataController extends Controller
     
     private function addCategories()
     {
-        $categories = [
-            '自己紹介',
-            '志望',
-            'スキル',
-            '実績',
-            '趣味',
-            '日本',
-            '終わり',
-        ];
-        foreach ($categories as $category) {
-            Category::findOneCreateNew(['name' => $category]);
-        }        
+//         $categories = [
+//             '自己紹介',
+//             '志望',
+//             'スキル',
+//             '実績',
+//             '趣味',
+//             '日本',
+//             '終わり',
+//         ];
+//         foreach ($categories as $category) {
+//             $category = Category::findOneCreateNew(['name' => $category], TRUE);
+//         }
     }
     
     /**
@@ -63,7 +63,7 @@ class InitDataController extends Controller
         if (isset($this->categoryMapByName[$name])) {
             $category = $this->categoryMapByName[$name];
         } else {
-            $category = Category::findOneCreateNew(['name' => $name]);
+            $category = Category::findOneCreateNew(['name' => $name], TRUE);
             $this->categoryMapByName[$name] = $category;
         }
         return $category;
@@ -71,22 +71,11 @@ class InitDataController extends Controller
     
     private function addQuestions()
     {
-        $categories = [
-            '自己',
-            '志望',
-            '反射',
-            'スキル',
-            '実績',
-            '趣味',
-            '日本',
-            '終わり',
-        ];
         $this->addQuestion('自己', 'まず、簡単に自己紹介をお願いします。', '1～2分程度でシンプルに自己紹介できることを望む。');
         $this->addQuestion('自己', '自己PRをしてください。');
         $this->addQuestion(['自己', '反射'], 'あなたの長所は何ですか？');
         $this->addQuestion(['自己', '反射'], '自分の短所は何ですか？');
         $this->addQuestion(['自己', '反射'], '苦手なことは何ですか？');
-        
         $this->addQuestion(['自己', '反射'], '挫折・失敗経験について教えてくだ');
         $this->addQuestion(['自己', '反射', '日本'], '最近気になるニュースは何ですか？');
         $this->addQuestion(['自己', '反射'], '自分を動物に例えると？');
@@ -122,7 +111,7 @@ class InitDataController extends Controller
         
     }
     
-    private function addQuestion($categories, $question, $remarks = NULL)
+    private function addQuestion($categories, $inquiry, $remarks = NULL)
     {
         // Assure $categories is an array.
         if (!is_array($categories)) {
@@ -130,12 +119,13 @@ class InitDataController extends Controller
         }
         
         // Add question.
-        $question = Question::findOne(['question' => $question]);
+        $question = Question::findOne(['question' => $inquiry]);
         if (!$question) {
             $question = new Question([
-                'question' => $question,
+                'question' => $inquiry,
                 'remarks' => $remarks,
             ]);
+            $question->saveThrowError();
         }
         
         // Connect categories and question.
@@ -144,7 +134,7 @@ class InitDataController extends Controller
             $categoryQuestion = CategoryQuestion::findOneCreateNew([
                 'category_id' => $category->id,
                 'question_id' => $question->id,
-            ]);
+            ], TRUE);
         }
     }
 	

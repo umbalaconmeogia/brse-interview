@@ -1,43 +1,37 @@
 <?php
 
-use yii\db\Migration;
+use batsg\migrations\BaseMigrationCreateTable;
 
 /**
  * Handles the creation of table `interview_question`.
  */
-class m170809_150004_create_interview_question_table extends Migration
+class m170809_150004_create_interview_question_table extends BaseMigrationCreateTable
 {
     /**
-     * @inheritdoc
+     * @var string
      */
-    public function up()
+    protected $table = 'interview_question';
+    
+    /**
+     * {@inheritDoc}
+     * @see \batsg\migrations\BaseMigrationCreateTable::createDbTable()
+     */
+    protected function createDbTable()
     {
-        $this->createTable('interview_question', [
+        $this->createTableWithExtraFields($this->table, [
             'id' => $this->primaryKey(),
-			'interview_id' => $this->defineForeignKey('interview', 'id'),
-			'question_id' => $this->defineForeignKey('question', 'id'),
-            'usage' => $this->smallInteger(),
+            'interview_id' => $this->defineForeignKey('interview', 'id'),
+            'question_id' => $this->defineForeignKey('question', 'id'),
+            'usage' => [$this->smallInteger()->defaultValue(1), '使用状況'],
         ]);
-		if (Yii::$app->db->driverName != 'sqlite') {
-			// add foreign key for table `interview`
-			$this->addForeignKey(
-				'fk-interview_question-interview_id',
-				'interview_question',
-				'interview_id',
-				'interview',
-				'id',
-				'CASCADE'
-			);
-			// add foreign key for table `question`
-			$this->addForeignKey(
-				'fk-interview_question-question_id',
-				'interview_question',
-				'question_id',
-				'question',
-				'id',
-				'CASCADE'
-			);
-		}
+        
+        $this->addComments($this->table, '面接・質問');
+        
+        // Add foreign keys
+        $this->addForeignKeys($this->table, [
+            ['interview_id', 'interview'],
+            ['question_id', 'question'],
+        ]);
     }
 
 	/**
@@ -52,12 +46,4 @@ class m170809_150004_create_interview_question_table extends Migration
 			"integer NOT NULL REFERENCES {$refTable}(${refColumn})" :
 			$this->integer()->notNull();
 	}
-
-    /**
-     * @inheritdoc
-     */
-    public function down()
-    {
-        $this->dropTable('interview_question');
-    }
 }

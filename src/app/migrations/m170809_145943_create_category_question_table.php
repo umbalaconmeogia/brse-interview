@@ -1,43 +1,37 @@
 <?php
 
-use yii\db\Migration;
+use batsg\migrations\BaseMigrationCreateTable;
 
 /**
  * Handles the creation of table `category_question`.
  */
-class m170809_145943_create_category_question_table extends Migration
+class m170809_145943_create_category_question_table extends BaseMigrationCreateTable
 {
     /**
-     * @inheritdoc
+     * @var string
      */
-    public function up()
+    protected $table = 'category_question';
+    
+    /**
+     * {@inheritDoc}
+     * @see \batsg\migrations\BaseMigrationCreateTable::createDbTable()
+     */
+    protected function createDbTable()
     {
-        $this->createTable('category_question', [
+        $this->createTableWithExtraFields($this->table, [
             'id' => $this->primaryKey(),
-			'category_id' => $this->defineForeignKey('category', 'id'),
-			'question_id' => $this->defineForeignKey('question', 'id'),
+            'category_id' => $this->defineForeignKey('category', 'id'),
+            'question_id' => $this->defineForeignKey('question', 'id'),
         ]);
-		if (Yii::$app->db->driverName != 'sqlite') {
-			// add foreign key for table `category`
-			$this->addForeignKey(
-				'fk-category_question-category_id',
-				'category_question',
-				'category_id',
-				'category',
-				'id',
-				'CASCADE'
-			);
-			// add foreign key for table `question`
-			$this->addForeignKey(
-				'fk-category_question-question_id',
-				'category_question',
-				'question_id',
-				'question',
-				'id',
-				'CASCADE'
-			);
-		}
-	}
+        
+        $this->addComments($this->table, 'カテゴリー・質問');
+        
+        // Add foreign keys
+        $this->addForeignKeys($this->table, [
+            ['category_id', 'category'],
+            ['question_id', 'question'],
+        ]);
+    }
 
 	/**
 	 * Return definition for a column that is a foreign key.
@@ -51,12 +45,4 @@ class m170809_145943_create_category_question_table extends Migration
 			"integer NOT NULL REFERENCES {$refTable}(${refColumn})" :
 			$this->integer()->notNull();
 	}
-
-    /**
-     * @inheritdoc
-     */
-    public function down()
-    {
-        $this->dropTable('category_question');
-    }
 }

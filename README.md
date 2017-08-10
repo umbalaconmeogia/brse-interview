@@ -16,11 +16,11 @@ https://github.com/umbalaconmeogia/brse-interview.git
 ## ファイルパーミッションの設定（Linux環境にインストール場合のみ）
 以下は、ウェブサーバの実行ユーザ（例えばapache）に権限を与える。
 
-* src/app/yiiに実行モード
+* src/app/yii を実行モードに
 
-* src/app/runtimeに書込モード
+* src/app/runtime を書込モードに
 
-* src/serverSpecificに書込モード（今回はsqliteDBファイルをここに置くため必要になる）
+* src/serverSpecific を書込モードに（今回はsqliteDBファイルをここに置くため必要になる）
 
 ## yii2と他のライブラリーをダウンロード
 
