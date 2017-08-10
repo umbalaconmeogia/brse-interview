@@ -3,7 +3,7 @@ $cache = FALSE;
 return [
 	'db' => [
 		'class' => 'yii\db\Connection',
-		'dsn' => 'sqlite:@app/data/db.sqlite',
+		'dsn' => 'sqlite:@app/../serverSpecific/db.sqlite',
 		'username' => 'root',
 		'password' => '',
 		'charset' => 'utf8',
