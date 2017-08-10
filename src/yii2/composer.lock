@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d0ae91dd49c8a7d0b85d596e662463df",
+    "content-hash": "5cb3ca10b7480e06ab22b45843d856f3",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -367,6 +367,43 @@
                 "mailer"
             ],
             "time": "2017-05-01T15:54:03+00:00"
+        },
+        {
+            "name": "umbalaconmeogia/yii2-batsg",
+            "version": "v0.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/umbalaconmeogia/yii2-batsg.git",
+                "reference": "5afee83f6df30d9f87df51f2e4ca5f6e35a1607f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/umbalaconmeogia/yii2-batsg/zipball/5afee83f6df30d9f87df51f2e4ca5f6e35a1607f",
+                "reference": "5afee83f6df30d9f87df51f2e4ca5f6e35a1607f",
+                "shasum": ""
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "batsg\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tran Trung Thanh",
+                    "role": "Developer"
+                }
+            ],
+            "description": "My best practice and my libraries when using yii2 framework.",
+            "keywords": [
+                "utility",
+                "yii2"
+            ],
+            "time": "2017-07-10T01:51:39+00:00"
         },
         {
             "name": "yiisoft/yii2",

@@ -10,11 +10,12 @@ use Yii;
  * @property integer $id
  * @property integer $interview_id
  * @property integer $question_id
+ * @property integer $usage
  *
  * @property Question $question
  * @property Interview $interview
  */
-class InterviewQuestion extends \yii\db\ActiveRecord
+class InterviewQuestion extends \batsg\models\BaseBatsgModel
 {
     /**
      * @inheritdoc
@@ -31,7 +32,7 @@ class InterviewQuestion extends \yii\db\ActiveRecord
     {
         return [
             [['interview_id', 'question_id'], 'required'],
-            [['interview_id', 'question_id'], 'integer'],
+            [['interview_id', 'question_id', 'usage'], 'integer'],
             [['question_id'], 'exist', 'skipOnError' => true, 'targetClass' => Question::className(), 'targetAttribute' => ['question_id' => 'id']],
             [['interview_id'], 'exist', 'skipOnError' => true, 'targetClass' => Interview::className(), 'targetAttribute' => ['interview_id' => 'id']],
         ];
@@ -46,6 +47,7 @@ class InterviewQuestion extends \yii\db\ActiveRecord
             'id' => 'ID',
             'interview_id' => 'Interview ID',
             'question_id' => 'Question ID',
+            'usage' => 'Usage',
         ];
     }
 

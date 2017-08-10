@@ -14,7 +14,7 @@ use Yii;
  * @property CategoryQuestion[] $categoryQuestions
  * @property InterviewQuestion[] $interviewQuestions
  */
-class Question extends \yii\db\ActiveRecord
+class Question extends \batsg\models\BaseBatsgModel
 {
     /**
      * @inheritdoc

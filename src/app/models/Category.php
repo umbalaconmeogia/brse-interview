@@ -12,7 +12,7 @@ use Yii;
  *
  * @property CategoryQuestion[] $categoryQuestions
  */
-class Category extends \yii\db\ActiveRecord
+class Category extends \batsg\models\BaseBatsgModel
 {
     /**
      * @inheritdoc

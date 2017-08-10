@@ -2,10 +2,9 @@
 
 namespace app\models;
 
-use Yii;
+use app\models\Question;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Question;
 
 /**
  * QuestionSearch represents the model behind the search form about `app\models\Question`.

@@ -14,7 +14,7 @@ use Yii;
  * @property Question $question
  * @property Category $category
  */
-class CategoryQuestion extends \yii\db\ActiveRecord
+class CategoryQuestion extends \batsg\models\BaseBatsgModel
 {
     /**
      * @inheritdoc

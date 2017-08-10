@@ -14,7 +14,7 @@ use Yii;
  *
  * @property InterviewQuestion[] $interviewQuestions
  */
-class Interview extends \yii\db\ActiveRecord
+class Interview extends \batsg\models\BaseBatsgModel
 {
     /**
      * @inheritdoc

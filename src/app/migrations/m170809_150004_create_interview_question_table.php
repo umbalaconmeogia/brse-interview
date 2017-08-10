@@ -16,6 +16,7 @@ class m170809_150004_create_interview_question_table extends Migration
             'id' => $this->primaryKey(),
 			'interview_id' => $this->defineForeignKey('interview', 'id'),
 			'question_id' => $this->defineForeignKey('question', 'id'),
+            'usage' => $this->smallInteger(),
         ]);
 		if (Yii::$app->db->driverName != 'sqlite') {
 			// add foreign key for table `interview`
