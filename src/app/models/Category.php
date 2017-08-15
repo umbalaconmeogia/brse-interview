@@ -11,6 +11,8 @@ use Yii;
  * @property string $name
  *
  * @property CategoryQuestion[] $categoryQuestions
+ * 
+ * @property Questions[] $questions
  */
 class Category extends \batsg\models\BaseBatsgModel
 {
@@ -50,5 +52,15 @@ class Category extends \batsg\models\BaseBatsgModel
     public function getCategoryQuestions()
     {
         return $this->hasMany(CategoryQuestion::className(), ['category_id' => 'id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getQuestions()
+    {
+        return $this->hasMany(Question::className(), ['id' => 'question_id'])
+            ->andOnCondition(['<>', 'data_status', self::DATA_STATUS_DELETE])
+            ->via('categoryQuestions');
     }
 }

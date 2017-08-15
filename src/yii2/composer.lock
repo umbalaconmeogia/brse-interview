@@ -370,16 +370,16 @@
         },
         {
             "name": "umbalaconmeogia/yii2-batsg",
-            "version": "v0.2.3",
+            "version": "v0.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/umbalaconmeogia/yii2-batsg.git",
-                "reference": "5afee83f6df30d9f87df51f2e4ca5f6e35a1607f"
+                "reference": "5d309b67ec1036a16604f94437053f88a1bd8c8b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/umbalaconmeogia/yii2-batsg/zipball/5afee83f6df30d9f87df51f2e4ca5f6e35a1607f",
-                "reference": "5afee83f6df30d9f87df51f2e4ca5f6e35a1607f",
+                "url": "https://api.github.com/repos/umbalaconmeogia/yii2-batsg/zipball/5d309b67ec1036a16604f94437053f88a1bd8c8b",
+                "reference": "5d309b67ec1036a16604f94437053f88a1bd8c8b",
                 "shasum": ""
             },
             "type": "yii2-extension",
@@ -403,7 +403,7 @@
                 "utility",
                 "yii2"
             ],
-            "time": "2017-07-10T01:51:39+00:00"
+            "time": "2017-08-10T09:52:02+00:00"
         },
         {
             "name": "yiisoft/yii2",

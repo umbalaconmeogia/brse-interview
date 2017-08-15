@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Category;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -12,9 +13,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'question')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'question')->input(['rows' => 2]) ?>
 
-    <?= $form->field($model, 'remarks')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'remarks')->textarea(['rows' => 3]) ?>
+    
+    <?= $form->field($model, 'categoryIds')->checkboxList(Category::hashModels(Category::findAllNotDeleted(), 'id', 'name')) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
