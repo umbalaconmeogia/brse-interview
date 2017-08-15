@@ -11,6 +11,8 @@ use yii\data\ActiveDataProvider;
  */
 class QuestionSearch extends Question
 {
+    public $categoryId;
+    
     /**
      * @inheritdoc
      */
@@ -18,7 +20,7 @@ class QuestionSearch extends Question
     {
         return [
             [['id'], 'integer'],
-            [['question', 'remarks'], 'safe'],
+            [['question', 'remarks', 'categoryId'], 'safe'],
         ];
     }
 
@@ -41,8 +43,10 @@ class QuestionSearch extends Question
     public function search($params)
     {
         $query = Question::find();
+        $query->joinWith('categoryQuestions');
 
         // add conditions that should always apply here
+        QuestionSearch::addWhereNotDeleted($query);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -59,6 +63,7 @@ class QuestionSearch extends Question
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'category_id' => $this->categoryId,
         ]);
 
         $query->andFilterWhere(['like', 'question', $this->question])
