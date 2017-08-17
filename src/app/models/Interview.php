@@ -8,7 +8,13 @@ use Yii;
  * This is the model class for table "interview".
  *
  * @property integer $id
+ * @property integer $data_status
+ * @property integer $created_by
+ * @property integer $created_at
+ * @property integer $updated_by
+ * @property integer $updated_at
  * @property string $interviewee
+ * @property string $interviewer
  * @property string $inteview_date
  * @property string $remarks
  *
@@ -30,10 +36,11 @@ class Interview extends \batsg\models\BaseBatsgModel
     public function rules()
     {
         return [
-            [['interviewee'], 'required'],
+            [['data_status', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
+            [['interviewee', 'interviewer'], 'required'],
             [['inteview_date'], 'safe'],
             [['remarks'], 'string'],
-            [['interviewee'], 'string', 'max' => 255],
+            [['interviewee', 'interviewer'], 'string', 'max' => 255],
         ];
     }
 
@@ -44,7 +51,13 @@ class Interview extends \batsg\models\BaseBatsgModel
     {
         return [
             'id' => 'ID',
+            'data_status' => 'Data Status',
+            'created_by' => 'Created By',
+            'created_at' => 'Created At',
+            'updated_by' => 'Updated By',
+            'updated_at' => 'Updated At',
             'interviewee' => 'Interviewee',
+            'interviewer' => 'Interviewer',
             'inteview_date' => 'Inteview Date',
             'remarks' => 'Remarks',
         ];

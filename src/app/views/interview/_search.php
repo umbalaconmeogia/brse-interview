@@ -17,11 +17,23 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'interviewee') ?>
+    <?= $form->field($model, 'data_status') ?>
 
-    <?= $form->field($model, 'inteview_date') ?>
+    <?= $form->field($model, 'created_by') ?>
 
-    <?= $form->field($model, 'remarks') ?>
+    <?= $form->field($model, 'created_at') ?>
+
+    <?= $form->field($model, 'updated_by') ?>
+
+    <?php // echo $form->field($model, 'updated_at') ?>
+
+    <?php // echo $form->field($model, 'interviewee') ?>
+
+    <?php // echo $form->field($model, 'interviewer') ?>
+
+    <?php // echo $form->field($model, 'inteview_date') ?>
+
+    <?php // echo $form->field($model, 'remarks') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

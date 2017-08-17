@@ -101,7 +101,7 @@ class InterviewController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->deleteLogically();
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }

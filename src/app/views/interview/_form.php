@@ -14,9 +14,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'interviewee')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'inteview_date')->textInput() ?>
+    <?= $form->field($model, 'interviewer')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'remarks')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'inteview_date')->textInput(['type' => 'date']) ?>
+
+    <?= $form->field($model, 'remarks')->textarea(['rows' => 3]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

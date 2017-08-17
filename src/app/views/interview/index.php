@@ -25,6 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'interviewee',
+            'interviewer',
             'inteview_date',
             'remarks:ntext',
 

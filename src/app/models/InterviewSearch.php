@@ -18,8 +18,8 @@ class InterviewSearch extends Interview
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['interviewee', 'inteview_date', 'remarks'], 'safe'],
+            [['id', 'data_status', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
+            [['interviewee', 'interviewer', 'inteview_date', 'remarks'], 'safe'],
         ];
     }
 
@@ -60,10 +60,16 @@ class InterviewSearch extends Interview
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'data_status' => $this->data_status,
+            'created_by' => $this->created_by,
+            'created_at' => $this->created_at,
+            'updated_by' => $this->updated_by,
+            'updated_at' => $this->updated_at,
             'inteview_date' => $this->inteview_date,
         ]);
 
         $query->andFilterWhere(['like', 'interviewee', $this->interviewee])
+            ->andFilterWhere(['like', 'interviewer', $this->interviewer])
             ->andFilterWhere(['like', 'remarks', $this->remarks]);
 
         return $dataProvider;
